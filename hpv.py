@@ -109,12 +109,12 @@ def simulate_ids(num):
     """
     ids = []
     if num > 0:
-	    for i in range(1, num+1):
-		    id_raw = digit_1to6() + digit_7to10() + digit_11to14() + digit_15to17()
-		    id = id_raw + digit_18(id_raw)
-		    ids.append(id)
+	for i in range(1, num+1):
+	    id_raw = digit_1to6() + digit_7to10() + digit_11to14() + digit_15to17()
+	    id = id_raw + digit_18(id_raw)
+	    ids.append(id)
     else:
-	    return False
+	return False
     return ids
 
 def check_id_for_hpv(id):
@@ -143,15 +143,16 @@ def main():
     if args.sim:
         ids = simulate_ids(args.sim)
         if ids:
-	        with open("ids.txt", "w") as f:
-	            f.write("\n".join(ids))
+	    with open("ids.txt", "w") as f:
+	        f.write("\n".join(ids))
     elif args.input:
         with open(args.input, "r") as f:
             ids = f.readlines()
     else:
 	    print("please type correct simulate id number")
 
-    # 打乱列表
+    # 打乱列表100次
+    # 学习一下 shuffle 的操作，本质上不需要这一步
     for i in range(100):
         random.shuffle(ids)
 
